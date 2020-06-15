@@ -75,3 +75,8 @@ nav{
     width:80%;
     margin-top:30px;
 }
+
+textarea{
+    overflow: hidden;
+    resize: none;
+}
