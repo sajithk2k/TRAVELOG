@@ -1,0 +1,76 @@
+body{
+    background-color: #EEEEEE;
+    color:#222C6A;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+nav{
+    background-color: #0E1331;
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.bg-dark{
+    background-color:#0E1331 !important;
+}
+
+.jumbotron{
+    background-color: #0E1331;
+    color: white;
+    padding: 0 0;
+    margin-bottom: 5px;
+}
+
+.thumbnail{
+    background-color: white;
+    text-transform: uppercase;
+}
+
+#stripe{
+    background-color: #245A99;
+    height: 49px;
+    margin-bottom: 20px;
+}
+
+#stripe button{
+    color:white;
+    padding:0 0;
+    background-color: inherit;
+    border: none;
+    text-transform: uppercase;
+    margin-right: 50px;
+    text-align: center;
+}
+
+.addButton{
+    background-color: #0E1331;
+    color:white;
+    border:none;
+}
+
+.date{
+    color:#737FC7;
+    font-size: 14px;
+}
+
+.bolder{
+    font-weight: 700;
+}
+
+.form-container{
+    background-color: white;
+    padding: 20px 20px;
+    width: 70%;
+}
+
+.image-container{
+    width: 70%;
+}
+
+.new-container{
+    height:80%;
+    width:80%;
+    margin-top:30px;
+}
