@@ -6,51 +6,56 @@
             <h2 class="bolder">Add Place</h2>
             <img class="img-fluid" src="https://svgshare.com/i/M3i.svg">
       </div>
+
       <div class="col-lg-5">
             <div class="container-fluid form-container">
-                <form action="/places" method="POST">
+                <form action="/places/<%= place._id %>?_method=PUT" method="POST">
                     <h4>Add Details about the place where you have visited.</h4>
                     <br>
                     <div class="form-group">
                         <label for="city" class="bolder">City</label>
-                        <input type="text" class="form-control" id="city" name="name" value="<%= place.name%>">
+                        <input type="text" class="form-control" id="city" name="place[name]" value="<%= place.name%>">
                     </div>
                     <div class="form-group">
                         <label for="image" class="bolder">Photo URL</label>
-                        <input type="text" class="form-control" id="image" name="image" value="<%= place.image%>">
+                        <input type="text" class="form-control" id="image" name="place[image]" value="<%= place.image%>">
                     </div>
                     <div class="form-group">
                         <label for="info" class="bolder">Few words about this place</label>
-                        <textarea id="info" class="form-control" name="info" rows="3"><%= place.info %></textarea>
+                        <textarea id="info" class="form-control" name="place[info]" rows="3"><%= place.info %></textarea>
                     </div>
-                    <script>
-                        if(place.isVisited){
-                        document.getElementById("isVisitedCheckbox").checked = true;
-                        }
-                        if(place.isBucket){
-                        document.getElementById("isBucketCheckbox").checked = true;
-                        }
-                    </script>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="isVisitedCheckbox" name="isVisited" value="true">
+                        <input class="form-check-input" type="checkbox" id="isVisitedCheckbox" name="place[isVisited]" >
                         <label class="form-check-label bolder" for="isVisitedCheckbox">VISITED</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="isBucketCheckbox" name="isBucket" value="true">
+                        <input class="form-check-input" type="checkbox" id="isBucketCheckbox" name="place[isBucket]" >
                         <label class="form-check-label bolder" for="isBucketCheckbox">BUCKET-LIST</label>
                     </div>
                     <br>
                     <br>
                     <div class="form-group">
                         <label for="date" class="bolder">When did you travel here?</label>
-                        <input type="text" class="form-control" id="date" name="date" value="<%= place.date%>">
+                        <input type="text" class="form-control" id="date" name="place[date]" value="<%= place.date%>">
                     </div>  
-                    <button type="submit" class="addButton">ADD PLACE</button>
+                    <button type="submit" id="submitButton" class="addButton" onclick="getBool()">EDIT PLACE</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    var place = <%- JSON.stringify(place) %>;
+    if(place.isVisited){
+    document.getElementById("isVisitedCheckbox").checked = true;
+    }
+    if(place.isBucket){
+    document.getElementById("isBucketCheckbox").checked = true;
+    }
+</script>
+
 
 
 <%- include("partials/footer") %>
