@@ -34,7 +34,7 @@ nav{
     margin-bottom: 20px;
 }
 
-#stripe button{
+#stripe a{
     color:white;
     padding:0 0;
     background-color: inherit;

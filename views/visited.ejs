@@ -1,0 +1,47 @@
+<%- include("partials/header") %>
+
+          <div class="jumbotron rounded-0">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-3 align-self-end">
+                    <img class="img-fluid" src="https://svgshare.com/i/M3o.svg">
+                  </div>
+                  <div class="col-md-6">
+                    <p>Sometimes, what matters is to pack your bags and get on a car and travel NON-STOP.</p>
+                    <h3>Explore! The World is Not Enough</h3>
+                  </div>
+                </div>
+          </div>
+          <div id="stripe">
+              <div class="container align-items-center">
+                    <a class="bolder btn" href="/places">My Visited Places</a>
+                    <a class="bolder btn" href="/places/bucket">My Bucket List</a>
+              </div>
+          </div>
+          <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-3">
+                  <h4>My Visited Places</h4>
+                </div>
+                <div class="col-md-3">
+                  <button class="addButton">ADD PLACE</button>
+                </div>
+            </div>
+            <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+              <% places.forEach(function(place){
+                if(place.type == "visited"){ %>
+                <div class="col-md-3 col-sm-6">
+                  <div class="thumbnail">
+                    <img class="img-fluid" src="<%= place.image %>">
+                    <div class="caption">
+                      <h5 class="bolder"><%= place.name %></h4>
+                      <p class="date"><%= place.date %></p>
+                    </div>
+                  </div>
+                </div>
+              <% }}); %> 
+            </div>
+          </div>
+          
+<%- include("partials/footer") %>
+          
+  
