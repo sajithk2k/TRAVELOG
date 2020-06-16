@@ -4,7 +4,8 @@ var placeSchema = new mongoose.Schema({
     name: String,
     image: String,
     info: String,
-    type: String,
+    isVisited:Boolean,
+    isBucket:Boolean,
     date: String
 });
 

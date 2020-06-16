@@ -14,31 +14,31 @@ var express = require("express"),
         {name:"Delhi",
         image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
         info:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        type:"visited",
+        isVisited: true,
         date:"14-APR-2020"
         },
         {name:"Chennai",
         image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
         info:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        type:"bucket",
+        isBucket: true,
         date:"15-JAN-2018"
         },
         {name:"Mumbai",
         image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
         info:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        type:"visited",
+        isVisited: true,
         date:"21-JUN-2015"
         },
         {name:"Bangalore",
         image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
         info:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        type:"bucket",
-        date:"28-DEc-2008"
+        isBucket: true,
+        date:"28-DEC-2008"
         },
         {name:"Hyderabad",
         image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
         info:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        type:"visited",
+        isVisited: true,
         date:"14-OCT-2014"
         }
     ]
@@ -48,24 +48,24 @@ app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 
-seedDB();
-function seedDB(){
-    Place.deleteMany({},function(err){
-        if(err){
-            console.log(err);
-        }
-        console.log("removed campgrounds");
-        data.forEach(function(newPlace){
-            Place.create(newPlace, function(err, addedPlace){
-                if(err){
-                    console.log(err);
-                } else{
-                    console.log("Added a place");
-                }
-            });
-        });
-    });
-}
+// seedDB();
+// function seedDB(){
+//     Place.deleteMany({},function(err){
+//         if(err){
+//             console.log(err);
+//         }
+//         console.log("removed campgrounds");
+//         data.forEach(function(newPlace){
+//             Place.create(newPlace, function(err, addedPlace){
+//                 if(err){
+//                     console.log(err);
+//                 } else{
+//                     console.log("Added a place");
+//                 }
+//             });
+//         });
+//     });
+// }
 
 app.get("/",function(req,res){
     res.render("entry");
@@ -93,11 +93,46 @@ app.get("/places/bucket",function(req,res){
 	});
 });
 
-//NEW-Add a new place  
+//NEW-Renders form to create a new place
 app.get("/places/new",function(req,res){
     res.render("new");
 });
 
+//CREATE-Add a new place to DB
+app.post("/places",function(req,res){
+    var name = req.body.name,
+        image = req.body.image,
+        info = req.body.info,
+        isVisited = req.body.isVisited,
+        isBucket = req.body.isBucket,
+        date = req.body.date;
+
+    var newPlace = {
+                    name: name,
+                    image: image,
+                    info: info,
+                    isVisited: isVisited,
+                    isBucket: isBucket,
+                    date: date
+    }
+
+    Place.create(newPlace, function(err, newlyCreated){
+		if(err)
+		{
+			console.log(err)
+		}else{
+			res.redirect("/places");
+		}
+	});
+});
+//VIEW AND EDIT
+
+app.get("/places/:id/show",  function(req,res){
+		
+    Place.findById(req.params.id,function(err, foundPlace){
+            res.render("show",{place: foundPlace});
+            });
+    });
 
 app.listen(3000,function(){
     console.log("TRAVELOG Server has started");

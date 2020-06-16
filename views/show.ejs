@@ -1,4 +1,5 @@
 <%- include("partials/header") %>
+
 <div class="container-fluid new-container">
     <div class="row justify-content-around align-items-center">
       <div class="col-lg-5 image-container">
@@ -12,29 +13,37 @@
                     <br>
                     <div class="form-group">
                         <label for="city" class="bolder">City</label>
-                        <input type="text" class="form-control" id="city" name="name" placeholder="city">
+                        <input type="text" class="form-control" id="city" name="name" value="<%= place.name%>">
                     </div>
                     <div class="form-group">
                         <label for="image" class="bolder">Photo URL</label>
-                        <input type="text" class="form-control" id="image" name="image" placeholder="photo url">
+                        <input type="text" class="form-control" id="image" name="image" value="<%= place.image%>">
                     </div>
                     <div class="form-group">
                         <label for="info" class="bolder">Few words about this place</label>
-                        <textarea id="info" class="form-control" name="info" rows="3"></textarea>
+                        <textarea id="info" class="form-control" name="info" rows="3"><%= place.info %></textarea>
+                    </div>
+                    <script>
+                        if(place.isVisited){
+                        document.getElementById("isVisitedCheckbox").checked = true;
+                        }
+                        if(place.isBucket){
+                        document.getElementById("isBucketCheckbox").checked = true;
+                        }
+                    </script>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="isVisitedCheckbox" name="isVisited" value="true">
+                        <label class="form-check-label bolder" for="isVisitedCheckbox">VISITED</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="isVisited" value="true">
-                        <label class="form-check-label bolder" for="inlineCheckbox1">VISITED</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="isBucket" value="true">
-                        <label class="form-check-label bolder" for="inlineCheckbox2">BUCKET-LIST</label>
+                        <input class="form-check-input" type="checkbox" id="isBucketCheckbox" name="isBucket" value="true">
+                        <label class="form-check-label bolder" for="isBucketCheckbox">BUCKET-LIST</label>
                     </div>
                     <br>
                     <br>
                     <div class="form-group">
                         <label for="date" class="bolder">When did you travel here?</label>
-                        <input type="text" class="form-control" id="date" name="date" placeholder="date">
+                        <input type="text" class="form-control" id="date" name="date" value="<%= place.date%>">
                     </div>  
                     <button type="submit" class="addButton">ADD PLACE</button>
                 </form>

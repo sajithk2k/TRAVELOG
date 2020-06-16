@@ -80,3 +80,7 @@ textarea{
     overflow: hidden;
     resize: none;
 }
+
+.thumbnail h5{
+    color: #222C6A;
+}
