@@ -147,7 +147,8 @@ app.post("/places",function(req,res){
 		}
 	});
 });
-//VIEW AND EDIT
+
+//VIEW AND EDIT FORM
 app.get("/places/:id/show",  function(req,res){
 		
     Place.findById(req.params.id,function(err, foundPlace){
@@ -170,6 +171,34 @@ app.put("/places/:id", function(req,res){
             console.log(editedPlace);
 		}
 	});
+});
+
+//REGISTER ROUTE
+app.post("/register",function(req,res){
+    var newUser = new User({
+        yourname: req.body.yourname,
+        email: req.body.email,
+        phone: req.body.phone,
+        username: req.body.username,
+    });
+	User.register(newUser, req.body.password, function(err, user){
+		if(err){
+			console.log(err);
+			return res.render("entry");
+		}
+		passport.authenticate("local")(req ,res, function(){
+            console.log(newUser);
+            res.redirect("/places");
+		});
+	});
+});
+
+//LOGIN ROUTE
+app.post("/login",passport.authenticate("local",
+	{
+		successRedirect: "/places",
+		failureRedirect: "/"
+	}), function(req,res){
 });
 
 app.listen(3000,function(){
