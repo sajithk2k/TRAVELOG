@@ -201,6 +201,12 @@ app.post("/login",passport.authenticate("local",
 	}), function(req,res){
 });
 
+//LOGOUT ROUTE
+app.get("/logout",function(req,res){
+	req.logout();
+	res.redirect("/");
+});
+
 app.listen(3000,function(){
     console.log("TRAVELOG Server has started");
 });
