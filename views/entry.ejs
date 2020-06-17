@@ -10,46 +10,52 @@
         <link rel="stylesheet" href="/stylesheets/main.css">
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet">
     </head>
-    <body>
-        <div class="container-fluid entry-container">
-            <div class="row justify-content-around align-items-center">
-                <div class="col-lg-5">
-                    <div class="container-fluid form-container">
-                        <form action="/login" method="POST">
-                            <h4 class="bolder">Login</h2>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                            </div>
-                            <button class="addButton" type="submit">LOG IN</button>
-                        </form>
-                    </div>
-                </div> 
-                <div class="col-lg-5">
-                    <div class="container-fluid form-container">
-                        <form action="/register" method="POST">
-                            <p>If you don't already have an account register to create your account.</p>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="yourname" name="yourname" placeholder="Your Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Email Id">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone No">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                            </div>
-                            <button class="addButton" type="submit">REGISTER</button>
-                        </form>
-                    </div>
-                </div> 
+    <body class="entry-body">
+        <div class="container-fluid main-container">
+            <div class="container-fluid entry-container">
+                <img class="img-fluid" src="images/login-header.svg">
+            </div>
+            <div class="container-fluid entry-container">
+                <div class="row justify-content-around align-items-start">
+                    <div class="col-lg-5">
+                        <div class="container-fluid form-container-entry">
+                            <br>
+                            <form action="/login" method="POST">
+                                <h4 class="bolder">Login</h2>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                </div>
+                                <button class="addButton" type="submit">LOG IN</button>
+                            </form>
+                        </div>
+                    </div> 
+                    <div class="col-lg-5">
+                        <div class="container-fluid form-container-entry">
+                            <form action="/register" method="POST">
+                                <p>If you don't already have an account register to create your account.</p>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="yourname" name="yourname" placeholder="Your Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email Id">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone No">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                </div>
+                                <button class="addButton" type="submit">REGISTER</button>
+                            </form>
+                        </div>
+                    </div> 
+                </div>
             </div>
         </div>    
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
