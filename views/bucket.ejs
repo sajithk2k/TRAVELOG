@@ -28,7 +28,7 @@
             </div>
             <div class="row text-center" style="display:flex; flex-wrap: wrap;">
               <% places.forEach(function(place){
-                  if(place.isBucket){ %>
+                  if(place.isBucket&&place.username == currentUser.username){ %>
                 <div class="col-md-3 col-sm-6">
                   <div class="thumbnail">
                     <img class="img-fluid" src="<%= place.image %>">

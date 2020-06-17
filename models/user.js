@@ -6,14 +6,7 @@ var UserSchema = new mongoose.Schema({
     email: String,
     phone: String,
     username: String,
-    password: String,
-
-    places: [
-        {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Place"
-		}
-    ]
+    password: String
 });
 
 

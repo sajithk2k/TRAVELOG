@@ -7,13 +7,7 @@ var placeSchema = new mongoose.Schema({
     isVisited:Boolean,
     isBucket:Boolean,
     date: String,
-    author: {
-		id:{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
-		},
 		username: String
-	}
 });
 
 module.exports = mongoose.model("Place",placeSchema);
