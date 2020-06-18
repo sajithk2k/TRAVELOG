@@ -3,13 +3,26 @@ body{
     color:#222C6A;
     font-family: 'IBM Plex Sans', sans-serif;
 }
+
 nav{
     background-color: #0E1331;
     color: white;
 }
 
+a{
+    text-decoration: none !important;
+}
+
+button{
+    cursor: pointer; 
+}
+
 .navbar-dark .navbar-nav .nav-link {
     color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    height:36px;
 }
 
 
@@ -29,10 +42,17 @@ nav{
     text-transform: uppercase;
 }
 
+.thumbnail img{
+    padding:5% 5%;
+}
+
 #stripe{
     background-color: #245A99;
     height: 49px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 #stripe a{
@@ -92,6 +112,7 @@ textarea{
 
 .thumbnail h5{
     color: #222C6A;
+    margin-bottom: 0;
 }
 
 .entry-container {
@@ -128,5 +149,40 @@ textarea{
     font-weight: 700;
 }
 
+#datediv{
+    display: none;
+}
 
+.form-control{
+    border-radius: 0px;
+}
 
+.add-button-div{
+    display :flex;
+}
+
+.btn{
+    border-radius: 0px;
+}
+
+.arrow-image{
+    width:4%;
+}
+
+.cancel-anchor{
+    margin-right:5%;
+    color: #999999;
+}
+
+.nameBorder{
+    border-right: 1px solid white;
+}
+
+.entryPara{
+    font-size:14px;
+    color:#666666;
+}
+
+.active{
+    color: #55BD84 !important;
+}

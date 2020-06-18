@@ -1,9 +1,11 @@
 <%- include("partials/header") %>
 
 <div class="container-fluid new-container">
-    <div class="row justify-content-around align-items-center">
+    <div class="row justify-content-around align-items-start">
       <div class="col-lg-5 image-container">
-            <h2 class="bolder">Edit Place</h2>
+            <h2 class="bolder"><a href="/places"><img class="img-fluid arrow-image" src="/images/arrow.svg" alt=""></a>  Edit Place Details</h2>
+            <br>
+            <br>
             <img class="img-fluid" src="/images/travel-illustration.svg">
       </div>
 
@@ -25,7 +27,7 @@
                         <textarea id="info" class="form-control" name="place[info]" rows="3"><%= place.info %></textarea>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="isVisitedCheckbox" name="place[isVisited]" >
+                        <input class="form-check-input" type="checkbox" id="isVisitedCheckbox" onClick="displayDate()" name="place[isVisited]" >
                         <label class="form-check-label bolder" for="isVisitedCheckbox">VISITED</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -34,12 +36,14 @@
                     </div>
                     <br>
                     <br>
-                    <div class="form-group">
+                    <div class="form-group" id="datediv">
                         <label for="date" class="bolder">When did you travel here?</label>
                         <input type="text" class="form-control" id="date" name="place[date]" value="<%= place.date%>">
                     </div>  
-                    <a href="/places">Cancel</a>
-                    <button type="submit" id="submitButton" class="addButton float-right" >UPDATE PLACE</button>
+                    <div style="display: flex; justify-content: flex-end">
+                        <a href="/places" class="cancel-anchor">Cancel</a>
+                        <button type="submit" id="submitButton" class="addButton" >UPDATE PLACE</button>
+                    </div>
                     <hr>
                 </form>
                 <form action="/places/<%= place._id %>?_method=DELETE" method="POST">
@@ -52,13 +56,24 @@
 
 
 <script>
+    var checkBox = document.getElementById("isVisitedCheckbox");
+    var date = document.getElementById("datediv");
     var place = <%- JSON.stringify(place) %>;
     if(place.isVisited){
+    date.style.display = "block";
     document.getElementById("isVisitedCheckbox").checked = true;
     }
     if(place.isBucket){
     document.getElementById("isBucketCheckbox").checked = true;
     }
+
+    function displayDate() {
+    if (checkBox.checked == true){
+    date.style.display = "block";
+    } else {
+    date.style.display = "none";
+    }
+}
 </script>
 
 
