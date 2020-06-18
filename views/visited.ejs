@@ -22,10 +22,11 @@
                 <div class="col-md-3">
                   <h4>My Visited Places</h4>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 justify-content-end add-button-div">
                   <a class="addButton btn" href="/places/new">ADD PLACE</a>
                 </div>
             </div>
+            <br>
             <div class="row text-center" style="display:flex; flex-wrap: wrap;">
               <% places.forEach(function(place){
                 if(place.isVisited&&place.username == currentUser.username){ %>
