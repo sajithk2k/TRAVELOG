@@ -3,7 +3,7 @@
           <div class="jumbotron rounded-0">
                 <div class="row justify-content-center align-items-center">
                   <div class="col-md-3 align-self-end">
-                    <img class="img-fluid" src="https://svgshare.com/i/M3o.svg">
+                    <img class="img-fluid" id="bucket-img" src="/images/home-illustration.svg">
                   </div>
                   <div class="col-md-6">
                     <p>Sometimes, what matters is to pack your bags and get on a car and travel NON-STOP.</p>
@@ -28,7 +28,7 @@
             </div>
             <div class="row text-center" style="display:flex; flex-wrap: wrap;">
               <% places.forEach(function(place){
-                  if(place.isBucket){ %>
+                  if(place.isBucket&&place.username == currentUser.username){ %>
                 <div class="col-md-3 col-sm-6">
                   <div class="thumbnail">
                     <img class="img-fluid" src="<%= place.image %>">

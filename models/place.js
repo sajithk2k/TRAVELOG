@@ -6,7 +6,8 @@ var placeSchema = new mongoose.Schema({
     info: String,
     isVisited:Boolean,
     isBucket:Boolean,
-    date: String
+    date: String,
+		username: String
 });
 
 module.exports = mongoose.model("Place",placeSchema);

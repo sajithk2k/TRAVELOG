@@ -12,6 +12,7 @@ nav{
     color: white;
 }
 
+
 .bg-dark{
     background-color:#0E1331 !important;
 }
@@ -66,6 +67,14 @@ nav{
     margin :20px auto;
 }
 
+.form-container-entry {
+    background-color: white;
+    padding: 20px 0px;
+    width: 90%;
+    margin : 20px auto;
+
+}
+
 .image-container{
     width: 70%;
 }
@@ -84,3 +93,40 @@ textarea{
 .thumbnail h5{
     color: #222C6A;
 }
+
+.entry-container {
+    background-color: white;
+    padding:0 0;
+    margin:0 auto;
+}
+
+.entry-container button{
+    width:100%;
+    height: 38px;
+    text-align: center;
+}
+
+.main-container {
+    width:50%;
+    height:50%;
+}
+
+.entry-body{
+    background-color: #0E1331;
+    margin:40px auto;
+    height:100%;
+    width:100%;
+    display: flex;
+}
+
+#deleteButton{
+    background: none;
+    border: none;
+    padding: 0;
+    color: #D0021B;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+
