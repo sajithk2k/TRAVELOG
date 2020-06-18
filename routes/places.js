@@ -5,7 +5,7 @@ var User = require("../models/user");
 var Place = require("../models/place");
 
 //SHOW-Shows all visited places(default)
-router.get("/places",function(req,res){
+router.get("/places", isLoggedIn,function(req,res){
 	Place.find({},function(err,allPlaces){
 		if(err){
 			console.log(err);
@@ -16,7 +16,7 @@ router.get("/places",function(req,res){
 });
 
 //BUCKET-Shows all bucket list places
-router.get("/places/bucket",function(req,res){
+router.get("/places/bucket", isLoggedIn,function(req,res){
 	Place.find({},function(err,allPlaces){
 		if(err){
 			console.log(err);
@@ -27,12 +27,12 @@ router.get("/places/bucket",function(req,res){
 });
 
 //NEW-Renders form to create a new place
-router.get("/places/new",function(req,res){
+router.get("/places/new", isLoggedIn,function(req,res){
     res.render("new");
 });
 
 //CREATE-Add a new place to DB
-router.post("/places",function(req,res){
+router.post("/places", isLoggedIn,function(req,res){
     var name = req.body.name,
         image = req.body.image,
         info = req.body.info,
@@ -61,7 +61,7 @@ router.post("/places",function(req,res){
 });
 
 //VIEW AND EDIT FORM
-router.get("/places/:id/show",  function(req,res){
+router.get("/places/:id/show",  isLoggedIn,function(req,res){
 		
     Place.findById(req.params.id,function(err, foundPlace){
             res.render("show",{place: foundPlace});
@@ -69,7 +69,7 @@ router.get("/places/:id/show",  function(req,res){
     });
 
 //UPDATE PLACE 
-router.put("/places/:id", function(req,res){
+router.put("/places/:id", isLoggedIn,function(req,res){
     
     req.body.place.isVisited=Boolean(req.body.place.isVisited);
     req.body.place.isBucket=Boolean(req.body.place.isBucket);
@@ -84,5 +84,23 @@ router.put("/places/:id", function(req,res){
 		}
 	});
 });
+
+//DELETE PLACE
+router.delete("/places/:id" , isLoggedIn,function(req,res){
+	Place.findByIdAndRemove(req.params.id,function(err){
+		if(err){
+			res.redirect("/places");
+		} else{
+			res.redirect("/places");
+		}
+	});
+});
+
+function isLoggedIn(req, res, next){	
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect("/");
+}
 
 module.exports= router;

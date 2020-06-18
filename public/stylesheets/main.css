@@ -119,5 +119,14 @@ textarea{
     display: flex;
 }
 
+#deleteButton{
+    background: none;
+    border: none;
+    padding: 0;
+    color: #D0021B;
+    font-size: 16px;
+    font-weight: 700;
+}
+
 
 
