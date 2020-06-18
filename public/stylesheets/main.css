@@ -50,6 +50,9 @@ button{
     background-color: #245A99;
     height: 49px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 #stripe a{
@@ -178,4 +181,8 @@ textarea{
 .entryPara{
     font-size:14px;
     color:#666666;
+}
+
+.active{
+    color: #55BD84 !important;
 }
