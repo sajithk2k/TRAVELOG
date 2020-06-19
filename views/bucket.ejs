@@ -1,0 +1,51 @@
+<%- include("partials/header") %>
+
+          <div class="jumbotron rounded-0">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-3 align-self-end">
+                    <img class="img-fluid" id="bucket-img" src="/images/home-illustration.svg">
+                  </div>
+                  <div class="col-md-6">
+                    <p>Sometimes, what matters is to pack your bags and get on a car and travel NON-STOP.</p>
+                    <h3>Explore! The World is Not Enough</h3>
+                  </div>
+                </div>
+          </div>
+          <div id="stripe">
+              <div class="container">
+                    <a class="bolder" href="/places">My Visited Places</a>
+                    <a class="bolder active" href="/places/bucket">My Bucket List</a>
+              </div>
+          </div>
+          <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-3">
+                  <h4>My Bucket List</h4>
+                </div>
+                <div class="col-md-3 justify-content-end  add-button-div">
+                  <a class="addButton btn" href="/places/new">ADD PLACE</a>
+                </div>
+            </div>
+            <br>
+            <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+              <% places.forEach(function(place){
+                  if(place.isBucket&&place.username == currentUser.username){
+                    if(!place.date){place.date="NA";} %>
+                <div class="col-md-3 col-sm-6 tile">
+                  <div class="thumbnail">
+                    <img class="img-fluid" src="<%= place.image %>">
+                    <div class="caption ">
+                      <a href="/places/<%= place._id %>/show">
+                        <h5 class="bolder"><%= place.name %></h4>
+                      </a>
+                      <p class="date"><%= place.date %></p>
+                    </div>
+                  </div>
+                </div>
+              <% }}); %> 
+            </div>
+          </div>
+          
+<%- include("partials/footer") %>
+          
+  

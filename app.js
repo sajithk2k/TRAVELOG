@@ -1,46 +1,48 @@
 var express = require("express"),
     app     = express(),
-    bodyParser = require("body-parser");
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    passport=require("passport"),
+	LocalStrategy=require("passport-local"),
+    methodOverride = require("method-override"),
+    Place = require("./models/place"),
+    User = require("./models/user");
 
-    var places=[
-        {name:"Delhi",
-        image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
-        date:"14-APR-2020"
-        },
-        {name:"Delhi",
-        image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
-        date:"14-APR-2020"
-        },
-        {name:"Delhi",
-        image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
-        date:"14-APR-2020"
-        },
-        {name:"Delhi",
-        image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
-        date:"14-APR-2020"
-        },
-        {name:"Delhi",
-        image:"https://www.incredibleindia.org/content/dam/incredible-india-v2/images/places/delhi/Original.jpg/jcr:content/renditions/cq5dam.web.256.256.jpeg",
-        date:"14-APR-2020"
-        }
-    ]
+var placeRoutes = require("./routes/places"),
+    indexRoutes = require("./routes/index");
 
+//Mongoose configuration
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect("mongodb://localhost/travelog2");
     
 app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
+app.use(methodOverride("_method"));
 
-app.get("/",function(req,res){
-    res.render("entry");
+app.use(require("express-session")({
+	secret: "I am the one who knocks-Walter White",
+	resave: false,
+	saveUninitialized: false
+}));
+
+//Passport configuration
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
 });
 
-app.get("/places",function(req,res){
-    res.render("places",{places:places});
-});
-
-app.get("/places/new",function(req,res){
-    res.render("new");
-});
+app.use("/",indexRoutes);
+app.use("/",placeRoutes);
 
 app.listen(3000,function(){
     console.log("TRAVELOG Server has started");

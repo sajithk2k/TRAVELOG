@@ -3,7 +3,7 @@
           <div class="jumbotron rounded-0">
                 <div class="row justify-content-center align-items-center">
                   <div class="col-md-3 align-self-end">
-                    <img src="https://svgshare.com/i/M3o.svg">
+                    <img class="img-fluid" src="/images/home-illustration.svg">
                   </div>
                   <div class="col-md-6">
                     <p>Sometimes, what matters is to pack your bags and get on a car and travel NON-STOP.</p>
@@ -12,9 +12,9 @@
                 </div>
           </div>
           <div id="stripe">
-              <div class="container">
-                <button class="bolder">My Visited Places</button>
-                <button class="bolder">My Bucket List</button>
+              <div class="container align-items-center">
+                    <a class="bolder active" id="visitButton" href="/places">My Visited Places</a>
+                    <a class="bolder" id="bucketButton"  href="/places/bucket">My Bucket List</a>
               </div>
           </div>
           <div class="container">
@@ -22,25 +22,29 @@
                 <div class="col-md-3">
                   <h4>My Visited Places</h4>
                 </div>
-                <div class="col-md-3">
-                  <button class="addButton">ADD PLACE</button>
+                <div class="col-md-3 justify-content-end add-button-div">
+                  <a class="addButton btn" href="/places/new">ADD PLACE</a>
                 </div>
             </div>
+            <br>
             <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-              <% places.forEach(function(place){ %>
-                <div class="col-md-3 col-sm-6">
+              <% places.forEach(function(place){
+                if(place.isVisited&&place.username == currentUser.username){ %>
+                <div class="col-md-3 col-sm-6 tile">
                   <div class="thumbnail">
-                    <img src="<%= place.image %>">
+                    <img class="img-fluid" src="<%= place.image %>">
                     <div class="caption">
-                      <h5 class="bolder"><%= place.name %></h4>
+                      <a href="/places/<%= place._id %>/show">
+                        <h5 class="bolder"><%= place.name %></h4>
+                      </a>
                       <p class="date"><%= place.date %></p>
                     </div>
                   </div>
                 </div>
-              <% }); %> 
+              <% }}); %> 
             </div>
           </div>
-          
 <%- include("partials/footer") %>
+
           
   
