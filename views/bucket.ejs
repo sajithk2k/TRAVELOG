@@ -29,11 +29,12 @@
             <br>
             <div class="row text-center" style="display:flex; flex-wrap: wrap;">
               <% places.forEach(function(place){
-                  if(place.isBucket&&place.username == currentUser.username){ %>
-                <div class="col-md-3 col-sm-6">
+                  if(place.isBucket&&place.username == currentUser.username){
+                    if(!place.date){place.date="NA";} %>
+                <div class="col-md-3 col-sm-6 tile">
                   <div class="thumbnail">
                     <img class="img-fluid" src="<%= place.image %>">
-                    <div class="caption">
+                    <div class="caption ">
                       <a href="/places/<%= place._id %>/show">
                         <h5 class="bolder"><%= place.name %></h4>
                       </a>

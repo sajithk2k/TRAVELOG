@@ -75,6 +75,7 @@ button{
 .date{
     color:#737FC7;
     font-size: 14px;
+    padding-bottom: 10px;
 }
 
 .bolder{
@@ -188,3 +189,20 @@ textarea{
 .active{
     color: #55BD84 !important;
 }
+
+.tile{
+    padding: 15px;
+}
+
+.error-message{
+    color: #D0021B;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .hide{
+    display: none
+  }
+
+  .entryForm:not(:first-child){
+    border-left: 1px solid #D9D9D9;
+  }
