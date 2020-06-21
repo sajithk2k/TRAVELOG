@@ -96,6 +96,7 @@ router.delete("/places/:id" , isLoggedIn,function(req,res){
 	});
 });
 
+//CHECK LOGIN MIDDLEWARE
 function isLoggedIn(req, res, next){	
 	if(req.isAuthenticated()){
 		return next();

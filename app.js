@@ -41,6 +41,7 @@ app.use(function(req, res, next){
 	next();
 });
 
+//USING DEFINED ROUTES
 app.use("/",indexRoutes);
 app.use("/",placeRoutes);
 
