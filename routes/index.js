@@ -4,8 +4,8 @@ var passport = require("passport");
 var User = require("../models/user");
 
 //HOME ROUTE
-router.get("/",function(req,res){
-    res.render("entry");
+router.get("/", isLoggedIn,function(req,res){
+	res.redirect("/places")
 });
 
 //REGISTER ROUTE
@@ -28,6 +28,9 @@ router.post("/register",function(req,res){
 	});
 });
 
+router.get("/login",function(req,res){
+	res.render("entry");
+});
 //LOGIN ROUTE
 router.post("/login",passport.authenticate("local",
 	{
@@ -42,4 +45,10 @@ router.get("/logout",function(req,res){
 	res.redirect("/");
 });
 
+function isLoggedIn(req, res, next){	
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect("/login");
+}
 module.exports = router;
