@@ -16,8 +16,8 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb://localhost/travelog2");
-    
+mongoose.connect("mongodb+srv://sajith:cascade2000@cluster0-83e5d.mongodb.net/Cluster0?retryWrites=true&w=majority");
+
 app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
