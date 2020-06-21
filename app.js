@@ -45,6 +45,6 @@ app.use(function(req, res, next){
 app.use("/",indexRoutes);
 app.use("/",placeRoutes);
 
-app.listen(3000,function(){
+app.listen(process.env.PORT, process.env.IP,function(){
     console.log("TRAVELOG Server has started");
 });
