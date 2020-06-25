@@ -16,7 +16,9 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb+srv://sajith:cascade2000@cluster0-83e5d.mongodb.net/Cluster0?retryWrites=true&w=majority");
+//Mongolab connect:
+// mongoose.connect("mongodb+srv://sajith:cascade2000@cluster0-83e5d.mongodb.net/Cluster0?retryWrites=true&w=majority");
+mongoose.connect("mongodb://localhost/travelog2");
 
 app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -45,6 +47,11 @@ app.use(function(req, res, next){
 app.use("/",indexRoutes);
 app.use("/",placeRoutes);
 
-app.listen(process.env.PORT, process.env.IP,function(){
+//Heroku PORT listen
+// app.listen(process.env.PORT, process.env.IP,function(){
+//     console.log("TRAVELOG Server has started");
+// });
+
+app.listen(3000,function(req,res){
     console.log("TRAVELOG Server has started");
 });
